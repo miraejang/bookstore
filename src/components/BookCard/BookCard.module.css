@@ -1,0 +1,89 @@
+.bookBox {
+  display: flex;
+  align-items: flex-start;
+  padding: 2.25rem 0;
+}
+
+.bookBox + .bookBox {
+  border-top: 1px solid var(--light-gray);
+}
+
+.link {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.img {
+  overflow: hidden;
+  flex-basis: 140px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.img img {
+  display: block;
+  width: 100%;
+}
+
+.content {
+  flex: 1;
+  margin-left: 1.5rem;
+  color: var(--gray);
+  font-size: 0.875rem;
+  word-break: keep-all;
+}
+
+.title {
+  line-height: 1.5;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #000;
+}
+
+.author {
+  margin-top: 0.3rem;
+  font-weight: 600;
+}
+
+.desc {
+  margin-top: 1rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  width: 100%;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+/* main */
+.grid + .grid {
+  border: 0;
+}
+
+.grid .link {
+  display: block;
+  margin: 0;
+}
+
+.grid .img {
+  display: flex;
+  align-items: center;
+  height: 80%;
+  box-shadow: none;
+}
+
+.grid .content {
+  width: 100%;
+  margin: 1rem 0 0;
+  padding: 1rem 0.5rem;
+  border-top: 1px solid var(--light-gray);
+}
+
+.grid .title {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}

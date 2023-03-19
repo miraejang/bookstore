@@ -1,0 +1,11 @@
+.books {
+  border-top: 2px solid var(--light-gray);
+  border-bottom: 2px solid var(--light-gray);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0 3rem;
+  align-content: stretch;
+}

@@ -5,13 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Cart from './pages/Cart';
-import Main from './pages/Main';
+import Main from './pages/Main/Main';
 import Mypage from './pages/Mypage';
 import OrderList from './components/OrderList/OrderList';
 import UserInfo from './components/UserInfo/UserInfo';
 import BookDetail from './pages/BookDetail';
 import Admin from './pages/Admin';
-import Books from './pages/Books';
+import Books from './pages/Books/Books';
 
 const router = createBrowserRouter([
   {

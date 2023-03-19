@@ -1,0 +1,8 @@
+.app {
+  width: 100%;
+  max-width: 100vw;
+}
+
+.main {
+  padding: 6rem 5rem;
+}

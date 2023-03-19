@@ -1,0 +1,30 @@
+.siteTitle {
+  flex: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.siteTitle span {
+  position: relative;
+}
+
+.siteTitle span::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 10%;
+  left: 100%;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: var(--brand-color);
+  border-radius: 50%;
+  margin-left: 0.3rem;
+}
+
+.icon {
+  margin-right: 0.5rem;
+  font-size: 3.3rem;
+  color: var(--brand-color);
+}

@@ -1,0 +1,36 @@
+.account {
+  position: relative;
+}
+
+.account button {}
+
+.account ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background: #f3f6fc;
+  color: #333;
+  font-size: 1rem;
+  box-shadow: 0 4px 8px 3px rgba(0, 0, 0, .15), 0 1px 3px rgba(0, 0, 0, .3);
+}
+
+.account ul li {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+}
+
+.account ul li:hover {
+  background-color: #e0e9f8;
+}
+
+.account ul .info {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: #fff;
+}
