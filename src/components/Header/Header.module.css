@@ -1,0 +1,102 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 90px;
+  padding: 1rem 2rem;
+  background-color: var(--brand-color);
+  color: #fff;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.logo .icon {
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.nav {
+  display: flex;
+  font-size: 1.3rem;
+}
+
+.nav li a {
+  padding: 0 1rem;
+}
+
+.userMenu {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.userMenu li {
+  padding: 0 0.1rem;
+}
+
+.userMenu li a {
+  padding: 0 0.3rem;
+}
+
+.userMenu button {
+  background-color: transparent;
+  color: inherit;
+}
+
+.cart {
+  font-size: 1.5rem;
+}
+
+.cart a {
+  display: flex;
+}
+
+.account {
+  position: relative;
+}
+
+.account ul {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background: #f3f6fc;
+  color: #333;
+  font-size: 1rem;
+  box-shadow: 0 4px 8px 3px rgba(0, 0, 0, .15), 0 1px 3px rgba(0, 0, 0, .3);
+}
+
+.account ul li {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+}
+
+.account ul li:hover {
+  background-color: #e0e9f8;
+}
+
+.account ul .info {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: #fff;
+}
+
+.account .logout button {
+  display: flex;
+  align-items: center;
+}
+
+.account .logout .icon {
+  margin-right: 0.5rem;
+}
