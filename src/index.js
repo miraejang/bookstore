@@ -9,7 +9,7 @@ import Main from './pages/Main/Main';
 import Mypage from './pages/Mypage';
 import OrderList from './components/OrderList/OrderList';
 import UserInfo from './components/UserInfo/UserInfo';
-import BookDetail from './pages/BookDetail';
+import BookDetail from './pages/BookDetail/BookDetail';
 import Admin from './pages/Admin';
 import Books from './pages/Books/Books';
 

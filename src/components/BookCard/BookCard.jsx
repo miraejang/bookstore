@@ -9,7 +9,7 @@ export default function BookCard({ book, type = 'list' }) {
     <>
       <li className={`${styles.bookBox} ${type === 'grid' && styles.grid}`}>
         {type === 'list' && <input type='checkbox' name='' id='' />}
-        <Link to={`/books/${id}`} className={styles.link}>
+        <Link to={`/books/${id}`} state={{ book }} className={styles.link}>
           <div className={styles.img}>
             <img src={img} alt={title} />
           </div>
