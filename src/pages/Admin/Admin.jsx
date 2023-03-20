@@ -15,7 +15,6 @@ export default function Admin() {
 
   return (
     <>
-      <h2 className='pageTitle'>관리자 페이지</h2>
       <ul className={styles.lnb}>
         <li>
           <NavLink

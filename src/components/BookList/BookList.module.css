@@ -1,4 +1,4 @@
-.books {
+.books, .admin {
   border-top: 2px solid var(--light-gray);
   border-bottom: 2px solid var(--light-gray);
 }

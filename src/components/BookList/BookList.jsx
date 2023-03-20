@@ -9,7 +9,9 @@ export default function BookList() {
   const [books, setBooks] = useState();
   const { pathname } = useLocation();
   const page =
-    pathname && pathname === '/' ? 'main' : pathname.replace(/^\//, '');
+    pathname && pathname === '/'
+      ? 'main'
+      : pathname.replace(/^\/([\w,-]+)\/?(?:[\w,-]+)?/, '$1');
 
   useEffect(() => {
     axios.get('/data/books.json').then((res) => setBooks(res.data.books));
@@ -25,7 +27,7 @@ export default function BookList() {
         >
           {books &&
             books.map((book) => {
-              if (/^admin/.exec(page)) {
+              if (page === 'admin') {
                 return <AdminBookCard book={book} key={book.id} />;
               } else {
                 return (

@@ -4,13 +4,21 @@
   padding: 2.25rem 1rem;
 }
 
+.bookBox button:hover,
+.bookBox a:hover {
+  background-color: var(--smoke-white);
+  color: var(--brand-color);
+}
+
 .bookBox + .bookBox {
   border-top: 1px solid var(--light-gray);
 }
 
 .checkbox {
+  position: relative;
   margin-top: 3rem;
   margin-right: 2rem;
+  transform: scale(1.7);
 }
 
 .link {
@@ -94,6 +102,10 @@
   font-size: 1.5rem;
   background-color: var(--light-gray);
 }
+
+/* .editBox button:hover {
+  background-color: var(--smoke-white);
+} */
 
 .editBox button + button {
   margin-top: 1rem;

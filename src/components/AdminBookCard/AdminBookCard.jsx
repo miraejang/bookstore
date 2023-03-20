@@ -24,8 +24,10 @@ export default function AdminBookCard({ book }) {
 
   return (
     <>
-      <li className={`${styles.bookBox}`}>
-        <input type='checkbox' name='' id='' className={styles.checkbox} />
+      <li className={styles.bookBox}>
+        <div className={styles.checkbox}>
+          <input type='checkbox' name={id} id={id} />
+        </div>
         <div className={styles.img}>
           <div className={styles.viewBox}>
             <img src={img} alt={title} />
