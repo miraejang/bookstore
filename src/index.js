@@ -10,8 +10,10 @@ import Mypage from './pages/Mypage';
 import OrderList from './components/OrderList/OrderList';
 import UserInfo from './components/UserInfo/UserInfo';
 import BookDetail from './pages/BookDetail/BookDetail';
-import Admin from './pages/Admin';
+import Admin from './pages/Admin/Admin';
 import Books from './pages/Books/Books';
+import AddBook from './components/AddBook/AddBook';
+import BooksManagement from './components/BooksManagement/BooksManagement';
 
 const router = createBrowserRouter([
   {
@@ -51,6 +53,17 @@ const router = createBrowserRouter([
       {
         path: 'admin',
         element: <Admin />,
+        children: [
+          {
+            index: true,
+            path: 'add-book',
+            element: <AddBook />,
+          },
+          {
+            path: 'books-management',
+            element: <BooksManagement />,
+          },
+        ],
       },
     ],
   },

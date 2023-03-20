@@ -1,0 +1,17 @@
+.box {
+  margin-bottom: 1.2rem;
+}
+
+.box button {
+  padding: 0.5rem 1rem;
+  background-color: var(--gray);
+  color: #fff;
+}
+
+.box button:hover {
+  background-color: var(--dark-gray);
+}
+
+.box button + button {
+  margin-left: 1rem;
+}

@@ -3,6 +3,7 @@ import axios from 'axios';
 import BookCard from '../BookCard/BookCard';
 import { useLocation } from 'react-router-dom';
 import styles from './BookList.module.css';
+import AdminBookCard from '../AdminBookCard/AdminBookCard';
 
 export default function BookList() {
   const [books, setBooks] = useState();
@@ -18,18 +19,25 @@ export default function BookList() {
     <>
       {page && (
         <ul
-          className={`${styles.listBox} ${page === 'main' && styles.grid} ${
-            styles[page]
-          }`}
+          className={`${styles.listBox} ${
+            page === 'main' ? styles.grid : styles.list
+          } ${styles[page]}`}
         >
           {books &&
-            books.map((book) => (
-              <BookCard
-                book={book}
-                type={pathname === '/' ? 'grid' : 'list'}
-                key={book.id}
-              />
-            ))}
+            books.map((book) => {
+              if (/^admin/.exec(page)) {
+                return <AdminBookCard book={book} key={book.id} />;
+              } else {
+                return (
+                  <BookCard
+                    book={book}
+                    type={pathname === '/' ? 'grid' : 'list'}
+                    page={page}
+                    key={book.id}
+                  />
+                );
+              }
+            })}
         </ul>
       )}
     </>

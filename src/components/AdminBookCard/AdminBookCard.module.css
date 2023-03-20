@@ -1,0 +1,100 @@
+.bookBox {
+  display: flex;
+  align-items: flex-start;
+  padding: 2.25rem 1rem;
+}
+
+.bookBox + .bookBox {
+  border-top: 1px solid var(--light-gray);
+}
+
+.checkbox {
+  margin-top: 3rem;
+  margin-right: 2rem;
+}
+
+.link {
+  display: inline-block;
+  padding: 0 0.3rem;
+  background-color: var(--light-gray);
+  margin-bottom: 0.7rem;
+}
+
+.img {
+  margin-top: 2rem;
+  flex-basis: 100px;
+}
+
+.viewBox {
+  overflow: hidden;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.img img {
+  display: block;
+  width: 100%;
+}
+
+.content {
+  flex: 1;
+  margin-left: 1.5rem;
+  line-height: 1.7;
+
+  word-break: keep-all;
+}
+
+.table {
+  font-size: 1.05rem;
+}
+
+.table tbody {
+  vertical-align: text-top;
+}
+
+.table th {
+  padding-right: 0.5rem;
+}
+
+.desc th, .desc td {
+  padding-top: 1.5rem;
+}
+
+.pre {
+  overflow: hidden;
+  width: 100%;
+  font-size: 0.875rem;
+}
+
+.pre.fold {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.descBtn {
+  display: flex;
+  margin-top: 0.7rem;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.descBtn .icon {
+  margin-right: 0.4rem;
+}
+
+.editBox {
+  display: flex;
+  flex-direction: column;
+  padding-left: 3rem;
+}
+
+.editBox button {
+  width: 3rem;
+  line-height: 3rem;
+  font-size: 1.5rem;
+  background-color: var(--light-gray);
+}
+
+.editBox button + button {
+  margin-top: 1rem;
+}
