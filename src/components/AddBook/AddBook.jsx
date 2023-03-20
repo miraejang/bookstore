@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BsHourglassSplit } from 'react-icons/bs';
 import { CiImageOff } from 'react-icons/ci';
+import { imageUploader } from '../../api/imageUploader';
 import axios from 'axios';
 import styles from './AddBook.module.css';
 
@@ -18,8 +19,10 @@ export default function AddBook() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const now = Date.now();
-    // setIsUploading(true);
-    console.log(book);
+    setIsUploading(true);
+    imageUploader(file)
+      .then((url) => console.log(url))
+      .finally(() => setIsUploading(false));
     setBook({});
     setFile();
     e.target.reset();

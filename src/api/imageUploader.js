@@ -1,26 +1,12 @@
-const url = "https://api.cloudinary.com/v1_1/dd0uxhc2w/image/upload";
-const form = document.querySelector("form");
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const files = document.querySelector("[type=file]").files;
+export async function imageUploader(file) {
   const formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', process.env.REACT_APP_CLOUDINARY_PRESET);
 
-  for (let i = 0; i < files.length; i++) {
-    let file = files[i];
-    formData.append("file", file);
-    formData.append("upload_preset", "docs_upload_example_us_preset");
-
-    fetch(url, {
-      method: "POST",
-      body: formData
-    })
-      .then((response) => {
-        return response.text();
-      })
-      .then((data) => {
-        document.getElementById("data").innerHTML += data;
-      });
-  }
-});
+  return fetch(process.env.REACT_APP_CLOUDINARY_URL, {
+    method: 'POST',
+    body: formData,
+  })
+    .then((res) => res.json())
+    .then((data) => data.url);
+}
