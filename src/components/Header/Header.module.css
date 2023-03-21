@@ -9,6 +9,29 @@
   color: #fff;
 }
 
+.left {
+  flex-basis: 30%;
+  display: flex;
+  text-align: center;
+  height: 100%;
+}
+
+.center {
+  flex-basis: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.right {
+  flex-basis: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+
 .logo {
   display: flex;
   align-items: center;
@@ -39,10 +62,14 @@
 
 .userMenu li {
   padding: 0 0.1rem;
+  height: 100%;
 }
 
 .userMenu li a {
-  padding: 0 0.3rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 0.5rem;
 }
 
 .userMenu button {
@@ -56,6 +83,12 @@
 
 .cart a {
   display: flex;
+}
+
+.header .account {
+  display: flex;
+  align-items: center;
+  padding-left: 0.7rem;
 }
 
 .account .userImg {
@@ -119,4 +152,40 @@
 .mypage .icon,
 .logout .icon {
   margin-right: 0.5rem;
+}
+
+
+
+.nav,
+.nav li,
+.nav li a,
+.userMenu,
+.userMenu li,
+.userMenu a {
+  height: 100%;
+}
+
+.header .link {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+
+.header .link::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: var(--brand-dark-color);
+  transition: width 0.3s;
+}
+
+.header .link:hover::after,
+.header .link:focus::after,
+.header .link.active::after {
+  width: 100%;
 }
