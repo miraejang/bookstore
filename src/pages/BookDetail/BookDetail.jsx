@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { getBook } from '../../api/firebase';
 import { useAuthContext } from '../../context/AuthContext';
 import styles from './BookDetail.module.css';
 import useCart from '../../hooks/useCart';
 import Modal from '../../components/Modal/Modal';
-import CartModal from '../../components/CartModal/CartModal';
+import ModalContent from '../../components/ModalContent/ModalContent';
 
 export default function BookDetail() {
   const { user } = useAuthContext();
@@ -77,14 +77,25 @@ export default function BookDetail() {
                 </p>
               )}
               <div className={styles.btnBox}>
-                <button onClick={handleAddCart} className={styles.cartBtn}>
+                <button
+                  onClick={handleAddCart}
+                  className={`${styles.btn} ${styles.cartBtn}`}
+                >
                   장바구니
                 </button>
-                <button className={styles.purchaseBtn}>바로구매</button>
+                <Link
+                  to='/order'
+                  state={{ book }}
+                  className={`${styles.btn} ${styles.purchaseBtn}`}
+                >
+                  바로구매
+                </Link>
                 {user && (
                   <button
                     onClick={handleWish}
-                    className={`${styles.wishBtn} ${wish ? styles.wish : ''}`}
+                    className={`${styles.btn} ${styles.wishBtn} ${
+                      wish ? styles.wish : ''
+                    }`}
                   >
                     {!wish && <AiOutlineHeart className={styles.icon} />}
                     {wish && <AiFillHeart className={styles.icon} />}
@@ -103,7 +114,10 @@ export default function BookDetail() {
       )}
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <CartModal onClose={() => setShowModal(false)} />
+          <ModalContent
+            onClose={() => setShowModal(false)}
+            message='이미 장바구니에 있는 상품입니다.'
+          />
         </Modal>
       )}
     </div>

@@ -1,0 +1,104 @@
+.order {
+  display: flex;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.left {
+  flex: 1;
+  padding-right: 4rem;
+}
+
+.right {
+  flex-basis: 280px;
+}
+
+.left section {
+  display: flex;
+  padding: 2rem;
+  border: 1px solid var(--medium-gray);
+  border-radius: 0.5rem;
+}
+
+.left section + section {
+  margin-top: 1rem;
+}
+
+.sectionLeft {
+  padding-right: 2rem;
+  border-right: 1px solid var(--light-gray)
+}
+
+.sectionContent {
+  flex: 1;
+  padding: 0 2rem;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.totalCount {
+  margin-top: 1rem;
+}
+
+.addressInput {
+  width: 100%;
+  padding: 0 0.5rem;
+  line-height: 2rem;
+}
+
+.listTable {
+  width: 100%;
+}
+
+.img {
+  width: 100px;
+}
+
+.priceBox {
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  padding: 1rem;
+  border: 1px solid var(--medium-gray);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.top {
+  border-bottom: 1px solid var(--light-gray)
+}
+
+.top, .bottom {
+  padding: 1rem 0;
+}
+
+.priceBox p {
+  display: flex;
+  justify-content: space-between;
+  line-height: 2rem;
+}
+
+.totalPrice .name {
+  font-weight: bold;
+}
+
+.totalPrice .text b {
+  font-size: 1.3rem;
+}
+
+.purchaseBtn {
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--brand-color);
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.empty {
+  text-align: center;
+  font-size: 1.5rem;
+}

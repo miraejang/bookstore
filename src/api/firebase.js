@@ -120,3 +120,24 @@ export async function getCart(uid) {
 export async function removeFromCart(uid, bookId) {
   remove(ref(database, `users/${uid}/cart/${bookId}`));
 }
+
+export async function addOrder(uid, order) {
+  const id = uuid();
+  const now = Date.now();
+  set(ref(database, `users/${uid}/orders/${id}`), {
+    date: now,
+    list: order,
+  });
+}
+
+export async function getOrders(uid) {
+  return get(ref(database, `users/${uid}/orders`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return snapshot.val();
+      } else {
+        return null;
+      }
+    })
+    .catch(console.error);
+}

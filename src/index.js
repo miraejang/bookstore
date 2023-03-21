@@ -14,6 +14,7 @@ import Admin from './pages/Admin/Admin';
 import Books from './pages/Books/Books';
 import AddBook from './components/AddBook/AddBook';
 import BooksManagement from './components/BooksManagement/BooksManagement';
+import Order from './pages/Order/Order';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: 'cart',
         element: <Cart />,
+      },
+      {
+        path: 'order',
+        element: <Order />,
       },
       {
         path: 'mypage',

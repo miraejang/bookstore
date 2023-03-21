@@ -9,3 +9,20 @@
   gap: 0 3rem;
   align-content: stretch;
 }
+
+.filterBox {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 2rem;
+}
+
+.count {
+  display: flex;
+  align-items: center;
+  margin-right: 2rem;
+}
+
+.searchBtn {
+  padding: 0.5rem;
+  margin-left: 1rem;
+}

@@ -4,7 +4,7 @@ import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import useCart from '../../hooks/useCart';
 import styles from './BookCard.module.css';
 import Modal from '../Modal/Modal';
-import CartModal from '../CartModal/CartModal';
+import ModalContent from '../ModalContent/ModalContent';
 
 export default function BookCard({ book, type = 'list', page }) {
   const {
@@ -108,7 +108,10 @@ export default function BookCard({ book, type = 'list', page }) {
       </li>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <CartModal onClose={() => setShowModal(false)} />
+          <ModalContent
+            onClose={() => setShowModal(false)}
+            message='이미 장바구니에 있는 상품입니다.'
+          />
         </Modal>
       )}
     </>

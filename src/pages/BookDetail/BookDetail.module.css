@@ -67,14 +67,14 @@
   margin-top: 2rem;
 }
 
-.btnBox button {
+.btnBox .btn {
   display: inline-flex;
   align-items: center;
   padding: 1rem 1.5rem;
   border-radius: 0.5rem;
 }
 
-.btnBox button + button {
+.btnBox .btn + .btn {
   margin-left: 1rem;
 }
 
