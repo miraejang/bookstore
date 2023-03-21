@@ -22,6 +22,8 @@ export default function AddBook() {
         addBook({
           ...book,
           img: url,
+          categoryCode: book.category,
+          categoryText: categoryList[book.category],
         });
       })
       .finally(() => setIsUploading(false));
@@ -84,6 +86,46 @@ export default function AddBook() {
             name='author'
             id='author'
             required
+          />
+        </div>
+        <div className={styles.required}>
+          <label className={styles.title} htmlFor='publish'>
+            출판사
+          </label>
+          <input
+            onChange={handleCahnge}
+            type='text'
+            name='publish'
+            id='publish'
+            required
+          />
+        </div>
+        <div className={styles.required}>
+          <label className={styles.title} htmlFor='price'>
+            가격
+          </label>
+          <input
+            onChange={handleCahnge}
+            type='number'
+            min='0'
+            step='1'
+            name='price'
+            id='price'
+            required
+          />
+        </div>
+        <div>
+          <label className={styles.title} htmlFor='discount'>
+            할인율(%)
+          </label>
+          <input
+            onChange={handleCahnge}
+            type='number'
+            min='0'
+            max='100'
+            step='1'
+            name='discount'
+            id='discount'
           />
         </div>
         <div>

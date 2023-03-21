@@ -7,6 +7,11 @@
   border-top: 1px solid var(--light-gray);
 }
 
+.checkbox {
+  transform: scale(1.5);
+  margin-right: 1rem;
+}
+
 .link {
   display: flex;
   width: 100%;
@@ -34,6 +39,11 @@
   word-break: keep-all;
 }
 
+.category {
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+}
+
 .title {
   line-height: 1.5;
   font-weight: 600;
@@ -46,8 +56,26 @@
   font-weight: 600;
 }
 
+.price {
+  margin-top: 1.2rem;
+  font-size: 1rem;
+}
+
+.discount {
+  font-weight: bold;
+  color: var(--yellow-green);
+  padding-right: 0.3rem;
+}
+
+.origin {
+  padding-left: 0.15em;
+  font-size: 0.8rem;
+  color: var(--gray);
+  text-decoration: line-through;
+}
+
 .desc {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -56,10 +84,53 @@
   line-height: 1.7;
 }
 
-/* list */
-/* .list {
-  f
-} */
+.btnBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: 3rem;
+}
+
+.wishBtn {
+  background-color: transparent;
+  margin-bottom: 1.8rem;
+  font-size: 1.5rem;
+  color: var(--light-gray);
+}
+
+.wishBtn:hover {
+  color: var(--medium-gray);
+}
+
+.wishBtn.wish {
+  color: red;
+}
+
+.wishBtn.wish:hover {
+  color: rgba(255, 0, 0, 0.8)
+}
+
+.cartBtn,
+.purchaseBtn {
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.5rem;
+  word-break: keep-all;
+  font-size: 0.9rem;
+  background-color: var(--brand-color);
+  color: #fff;
+}
+
+
+.cartBtn:focus,
+.purchaseBtn:focus,
+.cartBtn:hover,
+.purchaseBtn:hover {
+  background-color: var(--brand-hover-color)
+}
+
+.purchaseBtn {
+  margin-top: 1rem;
+}
 
 /* grid */
 .grid + .grid {

@@ -15,3 +15,53 @@
 .box button + button {
   margin-left: 1rem;
 }
+
+.table {
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  border: 1px solid var(--light-gray);
+}
+
+.table,
+.table th,
+.table td {
+  border: 1px solid var(--light-gray);
+}
+
+.table th {
+  position: sticky;
+  top: 0;
+  background-color: var(--smoke-white);
+  word-break: keep-all;
+}
+
+.table .img {
+  width: 140px;
+}
+
+.table th,
+.table td {
+  padding: 1rem 0.2rem;
+}
+
+.editBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.editBox button {
+  width: 3rem;
+  line-height: 3rem;
+  font-size: 1.5rem;
+  background-color: var(--light-gray);
+  color: var(--dark-gray);
+}
+
+.editBox button:hover {
+  color: #000;
+}
+
+.editBox button + button {
+  margin-top: 1rem;
+}

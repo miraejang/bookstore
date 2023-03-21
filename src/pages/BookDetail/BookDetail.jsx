@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import {
-  AiOutlineShoppingCart,
-  AiOutlineHeart,
-  AiFillHeart,
-} from 'react-icons/ai';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import styles from './BookDetail.module.css';
 import { getBook } from '../../api/firebase';
+import { useAuthContext } from '../../context/AuthContext';
 
 export default function BookDetail() {
+  const { user } = useAuthContext();
   const { state } = useLocation();
   const { id } = useParams();
   const [book, setBook] = useState();
+  const [wish, setWish] = useState(false);
 
   useEffect(() => {
-    if (!state) {
+    if (state) {
+      setBook(state.book);
+    } else {
       getBook(id).then(setBook);
     }
-  }, [id]);
+  }, [state, id]);
+  const handleWish = () => {
+    setWish((prev) => !prev);
+  };
 
   return (
     <div className={styles.detail}>
@@ -28,18 +32,44 @@ export default function BookDetail() {
               <img src={book.img} alt={book.title} className={styles.img} />
             </div>
             <div className={styles.left}>
+              <p className={styles.category}>{book.categoryText}</p>
               <h3 className={styles.title}>{book.title}</h3>
-              <p className={styles.author}>{book.author}</p>
+              <p className={styles.author}>{book.author} 저자(글)</p>
+              <p className={styles.publish}>출판사 {book.publish}</p>
+              {!book.discount && (
+                <p className={styles.price}>
+                  <b>{book.price.toLocaleString()}</b>원
+                </p>
+              )}
+              {book.discount && (
+                <p className={styles.price}>
+                  <span className={styles.discount}>{book.discount}%</span>
+                  <span>
+                    <b>
+                      {(
+                        book.price *
+                        ((100 - book.discount) / 100)
+                      ).toLocaleString()}
+                    </b>
+                    원
+                  </span>
+                  <span className={styles.origin}>
+                    {book.price.toLocaleString()}원
+                  </span>
+                </p>
+              )}
               <div className={styles.btnBox}>
-                <button className={styles.cartBtn}>
-                  <AiOutlineShoppingCart className={styles.icon} />
-                  장바구니
-                </button>
-                <button className={styles.wishBtn}>
-                  {true && <AiOutlineHeart className={styles.icon} />}
-                  {false && <AiFillHeart className={styles.icon} />}
-                  관심 도서
-                </button>
+                <button className={styles.cartBtn}>장바구니</button>
+                <button className={styles.purchaseBtn}>바로구매</button>
+                {user && (
+                  <button
+                    onClick={handleWish}
+                    className={`${styles.wishBtn} ${wish ? styles.wish : ''}`}
+                  >
+                    {!wish && <AiOutlineHeart className={styles.icon} />}
+                    {wish && <AiFillHeart className={styles.icon} />}
+                  </button>
+                )}
               </div>
             </div>
           </div>

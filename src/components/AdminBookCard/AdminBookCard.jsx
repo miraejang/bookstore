@@ -1,19 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { BiEditAlt, BiTrash } from 'react-icons/bi';
-import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
-import { getCategory, removeBook } from '../../api/firebase';
-import { useQuery } from '@tanstack/react-query';
+import { removeBook } from '../../api/firebase';
 import styles from './AdminBookCard.module.css';
 
 export default function AdminBookCard({ book }) {
-  const { id, title, img, author, desc, createdAt, category } = book;
-  const { data: categoryList } = useQuery(['category'], () => getCategory());
-  const [descOpen, setDescOpen] = useState(false);
+  const {
+    id,
+    title,
+    img,
+    author,
+    publish,
+    price,
+    discount,
+    createdAt,
+    categoryText,
+  } = book;
 
-  const handleDesc = () => {
-    setDescOpen((prev) => !prev);
-  };
   const handleDelete = () => {
     removeBook(id);
   };
@@ -55,39 +58,34 @@ export default function AdminBookCard({ book }) {
                 <td>{author}</td>
               </tr>
               <tr>
+                <th>출판사</th>
+                <td>{publish}</td>
+              </tr>
+              <tr>
+                <th>가격</th>
+                <td>{price.toLocaleString()}원</td>
+              </tr>
+              <tr>
+                <th>할인</th>
+                <td>
+                  <p>
+                    <b>할인율 : </b>
+                    {discount}%
+                  </p>
+
+                  <p>
+                    <b>할인가 : </b>
+                    {(price * ((100 - book.discount) / 100)).toLocaleString()}원
+                  </p>
+                </td>
+              </tr>
+              <tr>
                 <th>분류</th>
-                <td>{categoryList && categoryList[category]}</td>
+                <td>{categoryText}</td>
               </tr>
               <tr>
                 <th>등록일</th>
                 <td>{new Date(createdAt).toLocaleString('ko-KR')}</td>
-              </tr>
-              <tr className={styles.desc}>
-                <th>소개글</th>
-                <td>
-                  {desc && (
-                    <>
-                      <pre
-                        className={`${styles.pre} ${
-                          descOpen ? styles.open : styles.fold
-                        }`}
-                      >
-                        {desc}
-                      </pre>
-                      <button className={styles.descBtn} onClick={handleDesc}>
-                        {descOpen ? (
-                          <>
-                            <BsChevronUp className={styles.icon} /> 접기
-                          </>
-                        ) : (
-                          <>
-                            <BsChevronDown className={styles.icon} /> 전체 보기
-                          </>
-                        )}
-                      </button>
-                    </>
-                  )}
-                </td>
               </tr>
             </tbody>
           </table>
