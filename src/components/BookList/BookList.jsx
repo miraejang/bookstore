@@ -1,14 +1,15 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import { getBooks } from '../../api/firebase';
+import useBooks from '../../hooks/useBooks';
 import AdminBookCard from '../AdminBookCard/AdminBookCard';
 import BookCard from '../BookCard/BookCard';
 import Loading from '../Loading/Loading';
 import styles from './BookList.module.css';
 
 export default function BookList() {
-  const { isLoading, data: books } = useQuery(['books'], () => getBooks());
+  const {
+    booksQuery: { isLoading, data: books },
+  } = useBooks();
   const { pathname } = useLocation();
   const page =
     pathname && pathname === '/'

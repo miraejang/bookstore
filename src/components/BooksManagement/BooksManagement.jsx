@@ -1,13 +1,17 @@
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { getBooks } from '../../api/firebase';
 import { BiEditAlt, BiTrash } from 'react-icons/bi';
+import useBooks from '../../hooks/useBooks';
 import styles from './BooksManagement.module.css';
 
 export default function BooksManagement() {
-  const { isLoading, data: books } = useQuery(['books'], () => getBooks());
+  const {
+    booksQuery: { isLoading, data: books },
+    deleteBook,
+  } = useBooks();
 
-  const handleDelete = () => {};
+  const handleDelete = (id) => {
+    deleteBook.mutate(id);
+  };
 
   return (
     <>
@@ -85,7 +89,7 @@ export default function BooksManagement() {
                           <BiEditAlt />
                         </button>
                         <button
-                          onClick={handleDelete}
+                          onClick={() => handleDelete(id)}
                           className={styles.deleteBtn}
                         >
                           <BiTrash />

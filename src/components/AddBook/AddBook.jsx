@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { BsHourglassSplit } from 'react-icons/bs';
 import { CiImageOff } from 'react-icons/ci';
 import { imageUploader } from '../../api/imageUploader';
-import { addBook, getCategory } from '../../api/firebase';
+import { getCategory } from '../../api/firebase';
 import { useQuery } from '@tanstack/react-query';
 import styles from './AddBook.module.css';
+import useBooks from '../../hooks/useBooks';
 
 export default function AddBook() {
   const [book, setBook] = useState({});
@@ -12,19 +13,27 @@ export default function AddBook() {
   const [isUploading, setIsUploading] = useState(false);
   const [success, setSuccess] = useState(false);
   const { data: categoryList } = useQuery(['category'], () => getCategory());
+  const { addNewBook } = useBooks();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const now = Date.now();
     setIsUploading(true);
     imageUploader(file)
       .then((url) => {
-        addBook({
-          ...book,
-          img: url,
-          categoryCode: book.category,
-          categoryText: categoryList[book.category],
-        });
+        addNewBook.mutate(
+          {
+            ...book,
+            img: url,
+            categoryCode: book.category,
+            categoryText: categoryList[book.category],
+          },
+          {
+            onSuccess: () => {
+              setSuccess(true);
+              setTimeout(() => setSuccess(false), 2000);
+            },
+          }
+        );
       })
       .finally(() => setIsUploading(false));
     setBook({});

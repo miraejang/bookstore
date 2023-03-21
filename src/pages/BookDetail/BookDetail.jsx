@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
-import styles from './BookDetail.module.css';
 import { getBook } from '../../api/firebase';
 import { useAuthContext } from '../../context/AuthContext';
+import styles from './BookDetail.module.css';
 
 export default function BookDetail() {
   const { user } = useAuthContext();
