@@ -1,6 +1,6 @@
 {
-  "books": [
-{
+  "books": {
+"sample01": {
   "id": "sample01",
   "title": "세이노의 가르침",
   "img": "https://res.cloudinary.com/dd0uxhc2w/image/upload/v1679027344/9791168473690_bqvzb4.jpg",
@@ -9,7 +9,7 @@
   "createdAt": 1679287188902,
   "category": "9"
 },
-{
+"sample02": {
   "id": "sample02",
   "title" : "브라질에 비가 내리면 스타벅스 주식을 사라",
   "img": "https://res.cloudinary.com/dd0uxhc2w/image/upload/v1679027439/9791188754588_twtmfk.jpg",
@@ -18,7 +18,7 @@
   "createdAt": 1679287188902,
   "category": "8"
 },
-{
+"sample03": {
   "id": "sample03",
   "title" : "살 때, 팔 때, 벌 때",
   "img": "https://res.cloudinary.com/dd0uxhc2w/image/upload/v1679027912/9788950960667_t99jay.jpg",
@@ -27,7 +27,7 @@
   "createdAt": 1679287188902,
   "category": "8"
 },
-{
+"sample04": {
   "id": "sample04",
   "title" : " 이상한 과자 가게 전천당 17",
   "img": "https://res.cloudinary.com/dd0uxhc2w/image/upload/v1679027912/9791164065097_njrl27.jpg",
@@ -36,7 +36,7 @@
   "createdAt": 1679287188902,
   "category": "25"
 },
-{
+"sample05": {
   "id": "sample05",
   "title" : "2023 해커스 공인중개사 7일완성 1차 핵심요약집: 부동산학개론·민법 및 민사특별법",
   "img": "https://res.cloudinary.com/dd0uxhc2w/image/upload/v1679028178/9791169990196_ignepr.jpg",
@@ -45,7 +45,7 @@
   "createdAt": 1679287188902,
   "category": "18"
 },
-{
+"sample06": {
   "id": "sample06",
   "title" : "당신은 결국 무엇이든 해내는 사람(10만 부 기념 특별 리커버 에디션)",
   "img": "https://res.cloudinary.com/dd0uxhc2w/image/upload/v1679028178/9791188469994_qvp04h.jpg",
@@ -54,7 +54,7 @@
   "createdAt": 1679287188902,
   "category": "2"
 },
-{
+"sample07": {
   "id": "sample07",
   "title" : "메리골드 마음 세탁소",
   "img": "https://res.cloudinary.com/dd0uxhc2w/image/upload/v1679028178/9791191891287_k7xmte.jpg",
@@ -63,7 +63,7 @@
   "createdAt": 1679287188902,
   "category": "1"
 },
-{
+"sample08": {
   "id": "sample08",
   "title" : "김미경의 마흔 수업",
   "img": "https://res.cloudinary.com/dd0uxhc2w/image/upload/v1679028178/9791198013026_j2ek46.jpg",
@@ -72,7 +72,7 @@
   "createdAt": 1679287188902,
   "category": "9"
 },
-{
+"sample09": {
   "id": "sample09",
   "title" : "어른이 되기 전에 꼭 한 번은 논어를 읽어라 2",
   "img": "https://res.cloudinary.com/dd0uxhc2w/image/upload/v1679028809/9791158741853_nwapjn.jpg",
@@ -81,7 +81,7 @@
   "createdAt": 1679287188902,
   "category": "22"
 },
-{
+"sample10": {
   "id": "sample10",
   "title" : "스즈메의 문단속",
   "img": "https://res.cloudinary.com/dd0uxhc2w/image/upload/v1679028921/9791169791977_a4nbna.jpg",
@@ -90,7 +90,7 @@
   "createdAt": 1679287188902,
   "category": "1"
 },
-{
+"sample11": {
   "id": "sample11",
   "title" : "밸런스",
   "img": "https://res.cloudinary.com/dd0uxhc2w/image/upload/v1679029473/9791192730295_tbnenf.jpg",
@@ -99,7 +99,7 @@
   "createdAt": 1679287188902,
   "category": "8"
 },
-{
+"sample12": {
   "id": "sample12",
   "title" : "거인의 노트",
   "img": "https://res.cloudinary.com/dd0uxhc2w/image/upload/v1679029944/9791130697529_lxphra.jpg",
@@ -108,7 +108,7 @@
   "createdAt": 1679287188902,
   "category": "9"
 },
-{
+"sample13": {
   "id": "sample13",
   "title" : "1퍼센트 부자의 법칙",
   "img": "https://res.cloudinary.com/dd0uxhc2w/image/upload/v1679030016/9791197389450_p0msqc.jpg",
@@ -117,7 +117,7 @@
   "createdAt": 1679287188902,
   "category": "9"
 },
-{
+"sample14": {
   "id": "sample14",
   "title" : "심리학이 제갈량에게 말하다 2",
   "img": "https://res.cloudinary.com/dd0uxhc2w/image/upload/v1679030106/9788972773733_n4rool.jpg",
@@ -126,7 +126,7 @@
   "createdAt": 1679287188902,
   "category": "9"
 },
-{
+"sample15": {
   "id": "sample15",
   "title" : "불편한 편의점(40만부 기념 벚꽃 에디션)",
   "img": "https://res.cloudinary.com/dd0uxhc2w/image/upload/v1679030220/9791161571188_hjgdzh.jpg",
@@ -135,5 +135,5 @@
   "createdAt": 1679287188902,
   "category": "1"
 }
-  ]
+}
 }

@@ -58,11 +58,26 @@
   display: flex;
 }
 
+.account .userImg {
+  overflow: hidden;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+
+.account .userImg img {
+  display: block;
+  width: 100%;
+}
+
 .account {
   position: relative;
 }
 
-.account ul {
+.accountMenu {
   position: absolute;
   top: 100%;
   right: 0;
@@ -75,28 +90,33 @@
   box-shadow: 0 4px 8px 3px rgba(0, 0, 0, .15), 0 1px 3px rgba(0, 0, 0, .3);
 }
 
-.account ul li {
+.accountMenu li {
   display: flex;
   align-items: center;
   padding: 0.5rem 1rem;
   white-space: nowrap;
 }
 
-.account ul li:hover {
+.accountMenu li:hover {
   background-color: #e0e9f8;
 }
 
-.account ul .info {
+.accountMenu .info {
   padding-top: 1rem;
   padding-bottom: 1rem;
   background-color: #fff;
 }
 
-.account .logout button {
+.accountMenu .uesrImg {
+  margin-right: 0.5rem;
+}
+
+.logout button {
   display: flex;
   align-items: center;
 }
 
-.account .logout .icon {
+.mypage .icon,
+.logout .icon {
   margin-right: 0.5rem;
 }

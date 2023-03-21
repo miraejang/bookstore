@@ -26,7 +26,7 @@ export default function BookList() {
           } ${styles[page]}`}
         >
           {books &&
-            books.map((book) => {
+            Object.values(books).map((book) => {
               if (page === 'admin') {
                 return <AdminBookCard book={book} key={book.id} />;
               } else {

@@ -1,15 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { GiBookCover } from 'react-icons/gi';
-import { FiLogOut } from 'react-icons/fi';
+import { FiUser, FiLogOut } from 'react-icons/fi';
 import styles from './Header.module.css';
+import { login, logout, onAuthStateChange } from '../../api/firebase';
 
 export default function Header() {
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
+  const [user, setUser] = useState();
 
-  const handleClick = () => {
+  useEffect(() => {
+    onAuthStateChange(setUser);
+  }, []);
+
+  const handleAccountMenu = () => {
     setAccountMenuOpen((prev) => !prev);
+  };
+  const handleLogin = () => {
+    login().then(setUser);
+  };
+  const handleLogout = () => {
+    logout();
   };
 
   return (
@@ -34,26 +46,40 @@ export default function Header() {
         <li>
           <NavLink to='admin'>관리자</NavLink>
         </li>
-        <li>
-          <button>로그인</button>
-        </li>
-        <li className={styles.account}>
-          <button onClick={handleClick}>j</button>
-          {accountMenuOpen && (
-            <ul>
-              <li className={styles.info}>mirae jang</li>
-              <li>
-                <Link to='mypage'>마이페이지</Link>
-              </li>
-              <li className={styles.logout}>
-                <button>
-                  <FiLogOut className={styles.icon} />
-                  로그아웃
-                </button>
-              </li>
-            </ul>
-          )}
-        </li>
+        {!user && (
+          <li>
+            <button onClick={handleLogin}>로그인</button>
+          </li>
+        )}
+        {user && (
+          <li className={styles.account}>
+            <button onClick={handleAccountMenu} className={styles.userImg}>
+              <img src={user.photoURL} alt={user.displayName} />
+            </button>
+            {accountMenuOpen && (
+              <ul className={styles.accountMenu}>
+                <li className={styles.info}>
+                  <div className={styles.userImg}>
+                    <img src={user.photoURL} alt={user.displayName} />
+                  </div>
+                  {user.displayName}
+                </li>
+                <li className={styles.mypage}>
+                  <Link to='mypage'>
+                    <FiUser className={styles.icon} />
+                    마이페이지
+                  </Link>
+                </li>
+                <li className={styles.logout}>
+                  <button onClick={handleLogout}>
+                    <FiLogOut className={styles.icon} />
+                    로그아웃
+                  </button>
+                </li>
+              </ul>
+            )}
+          </li>
+        )}
       </ul>
     </header>
   );
