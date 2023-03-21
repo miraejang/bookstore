@@ -1,25 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import BookCard from '../BookCard/BookCard';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
-import styles from './BookList.module.css';
+import { useQuery } from '@tanstack/react-query';
+import { getBooks } from '../../api/firebase';
 import AdminBookCard from '../AdminBookCard/AdminBookCard';
+import BookCard from '../BookCard/BookCard';
+import Loading from '../Loading/Loading';
+import styles from './BookList.module.css';
 
 export default function BookList() {
-  const [books, setBooks] = useState();
+  const { isLoading, data: books } = useQuery(['books'], () => getBooks());
   const { pathname } = useLocation();
   const page =
     pathname && pathname === '/'
       ? 'main'
       : pathname.replace(/^\/([\w,-]+)\/?(?:[\w,-]+)?/, '$1');
 
-  useEffect(() => {
-    axios.get('/data/books.json').then((res) => setBooks(res.data.books));
-  }, []);
-
   return (
     <>
-      {page && (
+      {isLoading && <Loading />}
+      {!isLoading && page && (
         <ul
           className={`${styles.listBox} ${
             page === 'main' ? styles.grid : styles.list

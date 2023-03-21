@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { BsHourglassSplit } from 'react-icons/bs';
 import { CiImageOff } from 'react-icons/ci';
 import { imageUploader } from '../../api/imageUploader';
-import axios from 'axios';
+import { addBook, getCategory } from '../../api/firebase';
+import { useQuery } from '@tanstack/react-query';
 import styles from './AddBook.module.css';
 
 export default function AddBook() {
@@ -10,18 +11,19 @@ export default function AddBook() {
   const [file, setFile] = useState();
   const [isUploading, setIsUploading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [categoryList, setCategoryList] = useState();
-
-  useEffect(() => {
-    axios.get('/data/category.json').then((res) => setCategoryList(res.data));
-  }, []);
+  const { data: categoryList } = useQuery(['category'], () => getCategory());
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const now = Date.now();
     setIsUploading(true);
     imageUploader(file)
-      .then((url) => console.log(url))
+      .then((url) => {
+        addBook({
+          ...book,
+          img: url,
+        });
+      })
       .finally(() => setIsUploading(false));
     setBook({});
     setFile();
@@ -86,14 +88,20 @@ export default function AddBook() {
         </div>
         <div>
           <label className={styles.title} htmlFor='desc'>
-            설명
+            소개글
           </label>
           <textarea onChange={handleCahnge} type='text' name='desc' id='desc' />
         </div>
         <div className={styles.required}>
           <p className={styles.title}>카테고리</p>
           {categoryList && (
-            <select name='category' id='category' onChange={handleCahnge}>
+            <select
+              name='category'
+              id='category'
+              onChange={handleCahnge}
+              required
+            >
+              <option value=''>-- 분류 선택 --</option>
               {Object.keys(categoryList).map((key) => (
                 <option value={key} key={key}>
                   {categoryList[key]}

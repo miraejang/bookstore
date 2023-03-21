@@ -1,25 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BiEditAlt, BiTrash } from 'react-icons/bi';
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
-import axios from 'axios';
+import { getCategory, removeBook } from '../../api/firebase';
+import { useQuery } from '@tanstack/react-query';
 import styles from './AdminBookCard.module.css';
 
 export default function AdminBookCard({ book }) {
   const { id, title, img, author, desc, createdAt, category } = book;
-  const [categoryList, setCategoryList] = useState();
+  const { data: categoryList } = useQuery(['category'], () => getCategory());
   const [descOpen, setDescOpen] = useState(false);
-
-  useEffect(() => {
-    axios.get('/data/category.json').then((res) => setCategoryList(res.data));
-  }, []);
 
   const handleDesc = () => {
     setDescOpen((prev) => !prev);
   };
-  const dateToString = (date) => {
-    const d = new Date(Number(date));
-    return d.toLocaleString('ko-KR');
+  const handleDelete = () => {
+    removeBook(id);
   };
 
   return (
@@ -64,29 +60,33 @@ export default function AdminBookCard({ book }) {
               </tr>
               <tr>
                 <th>등록일</th>
-                <td>{dateToString(createdAt)}</td>
+                <td>{new Date(createdAt).toLocaleString('ko-KR')}</td>
               </tr>
               <tr className={styles.desc}>
-                <th>설명</th>
+                <th>소개글</th>
                 <td>
-                  <pre
-                    className={`${styles.pre} ${
-                      descOpen ? styles.open : styles.fold
-                    }`}
-                  >
-                    {desc}
-                  </pre>
-                  <button className={styles.descBtn} onClick={handleDesc}>
-                    {descOpen ? (
-                      <>
-                        <BsChevronUp className={styles.icon} /> 접기
-                      </>
-                    ) : (
-                      <>
-                        <BsChevronDown className={styles.icon} /> 전체 보기
-                      </>
-                    )}
-                  </button>
+                  {desc && (
+                    <>
+                      <pre
+                        className={`${styles.pre} ${
+                          descOpen ? styles.open : styles.fold
+                        }`}
+                      >
+                        {desc}
+                      </pre>
+                      <button className={styles.descBtn} onClick={handleDesc}>
+                        {descOpen ? (
+                          <>
+                            <BsChevronUp className={styles.icon} /> 접기
+                          </>
+                        ) : (
+                          <>
+                            <BsChevronDown className={styles.icon} /> 전체 보기
+                          </>
+                        )}
+                      </button>
+                    </>
+                  )}
                 </td>
               </tr>
             </tbody>
@@ -97,7 +97,7 @@ export default function AdminBookCard({ book }) {
           <button className={styles.editBtn}>
             <BiEditAlt />
           </button>
-          <button className={styles.deleteBtn}>
+          <button onClick={handleDelete} className={styles.deleteBtn}>
             <BiTrash />
           </button>
         </div>

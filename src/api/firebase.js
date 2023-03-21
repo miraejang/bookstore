@@ -6,6 +6,8 @@ import {
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth';
+import { getDatabase, ref, get, set, remove } from 'firebase/database';
+import { v4 as uuid } from 'uuid';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -21,6 +23,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
+const database = getDatabase(app);
 
 export async function login() {
   return signInWithPopup(auth, provider)
@@ -44,4 +47,50 @@ export async function logout() {
 
 export async function onAuthStateChange(callback) {
   return onAuthStateChanged(auth, (user) => callback(user));
+}
+
+export async function getBooks() {
+  return get(ref(database, 'books'))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return Object.values(snapshot.val());
+      } else {
+        return null;
+      }
+    })
+    .catch(console.error);
+}
+
+export async function getBook(id) {
+  return get(ref(database, `books/${id}`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return snapshot.val();
+      } else {
+        return null;
+      }
+    })
+    .catch(console.error);
+}
+
+export async function addBook(book) {
+  const id = uuid();
+  const now = Date.now();
+  set(ref(database, `books/${id}`), { id, createdAt: now, ...book });
+}
+
+export async function removeBook(bookId) {
+  remove(ref(database, `books/${bookId}`));
+}
+
+export async function getCategory() {
+  return get(ref(database, 'category'))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return snapshot.val();
+      } else {
+        return null;
+      }
+    })
+    .catch(console.error);
 }
