@@ -41,7 +41,12 @@ export default function BookRow({
         </td>
         <td>
           <p className={styles.id}>{id}</p>
-          <a href={`/books/${id}`} className={styles.link} target='_blank'>
+          <a
+            href={`/books/${id}`}
+            className={styles.link}
+            target='_blank'
+            rel='noreferrer'
+          >
             새 창으로 보기
           </a>
           <p>{title}</p>

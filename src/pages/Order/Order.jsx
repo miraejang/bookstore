@@ -37,7 +37,7 @@ export default function Order() {
     if (state === null) {
       navigate('/');
     }
-  }, [state]);
+  }, [state, navigate]);
 
   const handleOrder = () => {
     addNewOrder.mutate(orderList, {
