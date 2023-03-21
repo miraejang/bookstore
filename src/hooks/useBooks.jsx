@@ -8,17 +8,17 @@ export default function useBooks() {
     stateTime: 1000 * 60 * 5,
   });
 
-  const addNewBook = useMutation((product) => addBook(product), {
+  const updateBook = useMutation((book) => addBook(book), {
     onSuccess: () => {
       queryClient.invalidateQueries(['books']);
     },
   });
 
-  const deleteBook = useMutation((product) => removeBook(product), {
+  const deleteBook = useMutation((book) => removeBook(book), {
     onSuccess: () => {
       queryClient.invalidateQueries(['books']);
     },
   });
 
-  return { booksQuery, addNewBook, deleteBook };
+  return { booksQuery, updateBook, deleteBook };
 }

@@ -36,32 +36,7 @@
   word-break: keep-all;
 }
 
-.table .img {
-  width: 140px;
-}
-
 .table th,
 .table td {
   padding: 1rem 0.2rem;
-}
-
-.editBox {
-  display: flex;
-  flex-direction: column;
-}
-
-.editBox button {
-  width: 3rem;
-  line-height: 3rem;
-  font-size: 1.5rem;
-  background-color: var(--light-gray);
-  color: var(--dark-gray);
-}
-
-.editBox button:hover {
-  color: #000;
-}
-
-.editBox button + button {
-  margin-top: 1rem;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { GiBookCover } from 'react-icons/gi';

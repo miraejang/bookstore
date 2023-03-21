@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { BsHourglassSplit } from 'react-icons/bs';
 import { CiImageOff } from 'react-icons/ci';
-import { imageUploader } from '../../api/imageUploader';
 import { getCategory } from '../../api/firebase';
 import { useQuery } from '@tanstack/react-query';
-import styles from './AddBook.module.css';
+import { imageUploader } from '../../api/imageUploader';
 import useBooks from '../../hooks/useBooks';
+import styles from './EditBook.module.css';
 
-export default function AddBook() {
-  const [book, setBook] = useState({});
+export default function EditBook({ book }) {
   const [file, setFile] = useState();
+  const [updatedBook, setUpdatedBook] = useState(book);
   const [isUploading, setIsUploading] = useState(false);
   const [success, setSuccess] = useState(false);
   const { data: categoryList } = useQuery(['category'], () => getCategory());
@@ -18,25 +18,32 @@ export default function AddBook() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsUploading(true);
-    imageUploader(file)
-      .then((url) => {
-        updateBook.mutate(
-          {
-            ...book,
-            img: url,
-          },
-          {
-            onSuccess: () => {
-              setSuccess(true);
-              setTimeout(() => setSuccess(false), 2000);
+    if (file) {
+      imageUploader(file)
+        .then((url) => {
+          updateBook.mutate(
+            {
+              ...updatedBook,
+              img: url,
             },
-          }
-        );
-      })
-      .finally(() => setIsUploading(false));
-    setBook({});
-    setFile();
-    e.target.reset();
+            {
+              onSuccess: () => {
+                setSuccess(true);
+                setTimeout(() => setSuccess(false), 2000);
+              },
+            }
+          );
+        })
+        .finally(() => setIsUploading(false));
+    } else {
+      updateBook.mutate(updatedBook, {
+        onSuccess: () => {
+          setSuccess(true);
+          setTimeout(() => setSuccess(false), 2000);
+        },
+        onSettled: () => setIsUploading(false),
+      });
+    }
   };
   const handleCahnge = (e) => {
     const { name, value, files } = e.target;
@@ -45,21 +52,26 @@ export default function AddBook() {
       return;
     }
     if (name === 'category') {
-      setBook((prev) => ({
+      setUpdatedBook((prev) => ({
         ...prev,
         categoryCode: value,
         categoryText: categoryList[value],
       }));
       return;
     }
-    setBook((prev) => ({ ...prev, [name]: value }));
+    setUpdatedBook((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
-    <div className={styles.addForm}>
+    <div className={styles.editBook}>
       <div className={styles.img}>
-        {file && <img src={URL.createObjectURL(file)} alt='도서 이미지' />}
-        {!file && (
+        {file && (
+          <img src={URL.createObjectURL(file)} alt={updatedBook.title} />
+        )}
+        {!file && updatedBook.img && (
+          <img src={updatedBook.img} alt={updatedBook.title} />
+        )}
+        {!file && !updatedBook.img && (
           <div className={styles.empty}>
             <CiImageOff className={styles.icon} />
             <p>No Image</p>
@@ -67,7 +79,7 @@ export default function AddBook() {
         )}
       </div>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <div className={styles.required}>
+        <div>
           <label className={styles.title} htmlFor='image'>
             이미지
           </label>
@@ -77,7 +89,6 @@ export default function AddBook() {
             accept='.png, .jpg, .jpeg'
             name='image'
             id='image'
-            required
           />
         </div>
         <div className={styles.required}>
@@ -85,6 +96,7 @@ export default function AddBook() {
             제목
           </label>
           <input
+            value={updatedBook.title}
             onChange={handleCahnge}
             type='text'
             name='title'
@@ -97,6 +109,7 @@ export default function AddBook() {
             작가
           </label>
           <input
+            value={updatedBook.author}
             onChange={handleCahnge}
             type='text'
             name='author'
@@ -109,6 +122,7 @@ export default function AddBook() {
             출판사
           </label>
           <input
+            value={updatedBook.publish}
             onChange={handleCahnge}
             type='text'
             name='publish'
@@ -121,6 +135,7 @@ export default function AddBook() {
             가격
           </label>
           <input
+            value={updatedBook.price}
             onChange={handleCahnge}
             type='text'
             name='price'
@@ -133,6 +148,7 @@ export default function AddBook() {
             할인율(%)
           </label>
           <input
+            value={updatedBook.discount}
             onChange={handleCahnge}
             type='text'
             name='discount'
@@ -143,18 +159,24 @@ export default function AddBook() {
           <label className={styles.title} htmlFor='desc'>
             소개글
           </label>
-          <textarea onChange={handleCahnge} type='text' name='desc' id='desc' />
+          <textarea
+            value={updatedBook.desc}
+            onChange={handleCahnge}
+            type='text'
+            name='desc'
+            id='desc'
+          />
         </div>
         <div className={styles.required}>
           <p className={styles.title}>카테고리</p>
           {categoryList && (
             <select
+              defaultValue={updatedBook.categoryCode}
               name='category'
               id='category'
               onChange={handleCahnge}
               required
             >
-              <option value=''>-- 분류 선택 --</option>
               {Object.keys(categoryList).map((key) => (
                 <option value={key} key={key}>
                   {categoryList[key]}
@@ -164,7 +186,7 @@ export default function AddBook() {
           )}
         </div>
         {success && <p>✅ 도서가 등록되었습니다.</p>}
-        <button className={styles.addBtn} disabled={isUploading}>
+        <button className={styles.submitBtn} disabled={isUploading}>
           {isUploading ? (
             <>
               <BsHourglassSplit /> 등록중

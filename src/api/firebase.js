@@ -74,9 +74,15 @@ export async function getBook(id) {
 }
 
 export async function addBook(book) {
-  const id = uuid();
-  const now = Date.now();
-  set(ref(database, `books/${id}`), { id, createdAt: now, ...book });
+  const id = book.id || uuid();
+  const now = book.createdAt || Date.now();
+  set(ref(database, `books/${id}`), {
+    ...book,
+    id,
+    price: parseInt(book.price, 10),
+    discount: book.discount && parseInt(book.discount),
+    createdAt: now,
+  });
 }
 
 export async function removeBook(bookId) {

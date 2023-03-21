@@ -1,17 +1,14 @@
 import React from 'react';
-import { BiEditAlt, BiTrash } from 'react-icons/bi';
+
 import useBooks from '../../hooks/useBooks';
+import BookRow from '../BookRow/BookRow';
+
 import styles from './BooksManagement.module.css';
 
 export default function BooksManagement() {
   const {
     booksQuery: { isLoading, data: books },
-    deleteBook,
   } = useBooks();
-
-  const handleDelete = (id) => {
-    deleteBook.mutate(id);
-  };
 
   return (
     <>
@@ -26,8 +23,10 @@ export default function BooksManagement() {
               <tr>
                 <th>선택</th>
                 <th>이미지</th>
-                <th>아이디</th>
-                <th>제목</th>
+                <th>
+                  <p>아이디</p>
+                  <p>제목</p>
+                </th>
                 <th>작가</th>
                 <th>출판사</th>
                 <th>가격</th>
@@ -38,67 +37,9 @@ export default function BooksManagement() {
               </tr>
             </thead>
             <tbody>
-              {books.map((book) => {
-                const {
-                  id,
-                  title,
-                  img,
-                  author,
-                  publish,
-                  price,
-                  discount,
-                  categoryCode,
-                  categoryText,
-                  createdAt,
-                } = book;
-
-                return (
-                  <tr className={styles.row} key={id}>
-                    <td>
-                      <input type='checkbox' name={id} id={id} />
-                    </td>
-                    <td>
-                      <img src={img} alt={title} className={styles.img} />
-                    </td>
-                    <td>{id}</td>
-                    <td>{title}</td>
-                    <td>{author}</td>
-                    <td>{publish}</td>
-                    <td>{price.toLocaleString()}원</td>
-                    <td>
-                      {discount && (
-                        <>
-                          <p>{discount}%</p>
-                          <p>
-                            {(
-                              price *
-                              ((100 - book.discount) / 100)
-                            ).toLocaleString()}
-                            원
-                          </p>
-                        </>
-                      )}
-                    </td>
-                    <td>
-                      {categoryText}({categoryCode})
-                    </td>
-                    <td>{new Date(createdAt).toLocaleString('ko-KR')}</td>
-                    <td className={styles.edit}>
-                      <div className={styles.editBox}>
-                        <button className={styles.editBtn}>
-                          <BiEditAlt />
-                        </button>
-                        <button
-                          onClick={() => handleDelete(id)}
-                          className={styles.deleteBtn}
-                        >
-                          <BiTrash />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })}
+              {books.map((book) => (
+                <BookRow book={book} key={book.id} />
+              ))}
             </tbody>
           </table>
         </>

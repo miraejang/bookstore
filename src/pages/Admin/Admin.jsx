@@ -11,7 +11,7 @@ export default function Admin() {
     if (pathname === '/admin') {
       navigate('books-management');
     }
-  }, [pathname]);
+  }, [pathname, navigate]);
 
   return (
     <>

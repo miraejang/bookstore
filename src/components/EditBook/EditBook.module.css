@@ -1,0 +1,100 @@
+.editBook {
+  width: 100%;
+  min-width: 50rem;
+  padding: 0 2rem 3rem 2rem;
+}
+
+.img {
+  max-width: 200px;
+  margin: 0 auto;
+  background-color: var(--light-gray);
+  text-align: center;
+}
+
+.img img {
+  width: 100%;
+}
+
+.img .empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 295px;
+  padding: 2rem;
+  font-weight: 600;
+  color: var(--dark-gray);
+}
+
+.img .empty .icon {
+  font-size: 5rem;
+
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.form > div {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.form .required .title:before {
+  content: '*';
+  margin-right: 0.1rem;
+  font-size: 1.2em;
+  color: red;
+}
+
+.form .title {
+  flex-shrink: 0;
+  width: 6rem;
+  font-weight: bold;
+  text-align: right;
+  margin-right: 3rem;
+}
+
+.form input,
+.form textarea,
+.form select {
+  padding: 0.2rem 1rem;
+  line-height: 1.7;
+  font-size: 1rem;
+  outline: none;
+}
+
+.form input:not([type='file']),
+.form textarea {
+  flex: 1;
+  border: 1px solid var(--light-gray);
+}
+
+.form textarea {
+  min-height: 10rem;
+}
+
+.form select {
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  border: 1px solid var(--light-gray);
+}
+
+.form input:focus,
+.form textarea:focus,
+.form select:focus {
+  border-color: var(--brand-color);
+}
+
+.submitBtn {
+  margin-top: 1.5rem;
+  padding: 0.8rem 2rem;
+  border-radius: 0.2rem;
+  background-color: var(--brand-color);
+  color: #fff;
+}
