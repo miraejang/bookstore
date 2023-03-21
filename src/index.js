@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Cart from './pages/Cart';
+import Cart from './pages/Cart/Cart';
 import Main from './pages/Main/Main';
 import Mypage from './pages/Mypage';
 import OrderList from './components/OrderList/OrderList';

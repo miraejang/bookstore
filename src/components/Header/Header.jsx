@@ -4,11 +4,15 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { GiBookCover } from 'react-icons/gi';
 import { FiUser, FiLogOut } from 'react-icons/fi';
 import { useAuthContext } from '../../context/AuthContext';
+import useCart from '../../hooks/useCart';
 import styles from './Header.module.css';
 
 export default function Header() {
   const { isLoading, user, login, logout } = useAuthContext();
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
+  const {
+    cartQuery: { isLoading: cartIsLoading, data: cartItems },
+  } = useCart();
 
   const handleAccountMenu = () => {
     setAccountMenuOpen((prev) => !prev);
@@ -48,6 +52,11 @@ export default function Header() {
               >
                 <AiOutlineShoppingCart />
               </NavLink>
+              {!cartIsLoading && (
+                <div className={styles.cartCount}>
+                  {Object.keys(cartItems).length}
+                </div>
+              )}
             </li>
             <li>
               <NavLink

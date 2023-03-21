@@ -100,3 +100,23 @@ export async function getCategory() {
     })
     .catch(console.error);
 }
+
+export async function addCart(uid, book) {
+  set(ref(database, `users/${uid}/cart/${book.id}`), book);
+}
+
+export async function getCart(uid) {
+  return get(ref(database, `users/${uid}/cart`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return snapshot.val();
+      } else {
+        return null;
+      }
+    })
+    .catch(console.error);
+}
+
+export async function removeFromCart(uid, bookId) {
+  remove(ref(database, `users/${uid}/cart/${bookId}`));
+}

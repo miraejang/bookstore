@@ -13,7 +13,7 @@
 
 .content {
   position: relative;
-  overflow-y: scroll;
+  overflow-y: auto;
   max-width: 70%;
   max-height: 90%;
   background-color: var(--smoke-white);

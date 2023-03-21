@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import useCart from '../../hooks/useCart';
 import styles from './BookCard.module.css';
+import Modal from '../Modal/Modal';
+import CartModal from '../CartModal/CartModal';
 
 export default function BookCard({ book, type = 'list', page }) {
   const {
@@ -17,11 +20,25 @@ export default function BookCard({ book, type = 'list', page }) {
   } = book;
   const [listPage, setlistPage] = useState(false);
   const [wish, setWish] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const {
+    cartQuery: { data: cartItems },
+    updateCartItem,
+  } = useCart();
 
   useEffect(() => {
     if (type === 'list') setlistPage(true);
   }, [type, page]);
 
+  const handleAddCart = () => {
+    const items = cartItems && Object.keys(cartItems);
+
+    if (items && items.includes(id)) {
+      setShowModal(true);
+    } else {
+      updateCartItem.mutate({ ...book, quantity: 1 });
+    }
+  };
   const handleWish = () => {
     setWish((prev) => !prev);
   };
@@ -56,7 +73,10 @@ export default function BookCard({ book, type = 'list', page }) {
                     <span className={styles.discount}>{discount}%</span>
                     <span>
                       <b>
-                        {(price * ((100 - discount) / 100)).toLocaleString()}
+                        {(
+                          Math.floor((price * ((100 - discount) / 100)) / 10) *
+                          10
+                        ).toLocaleString()}
                       </b>
                       원
                     </span>
@@ -65,9 +85,9 @@ export default function BookCard({ book, type = 'list', page }) {
                     </span>
                   </p>
                 )}
+                <pre className={styles.desc}>{desc}</pre>
               </div>
             )}
-            {listPage && <pre className={styles.desc}>{desc}</pre>}
           </div>
         </Link>
         {listPage && (
@@ -79,11 +99,18 @@ export default function BookCard({ book, type = 'list', page }) {
               {!wish && <AiOutlineHeart className={styles.icon} />}
               {wish && <AiFillHeart className={styles.icon} />}
             </button>
-            <button className={styles.cartBtn}>장바구니</button>
+            <button onClick={handleAddCart} className={styles.cartBtn}>
+              장바구니
+            </button>
             <button className={styles.purchaseBtn}>바로구매</button>
           </div>
         )}
       </li>
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <CartModal onClose={() => setShowModal(false)} />
+        </Modal>
+      )}
     </>
   );
 }

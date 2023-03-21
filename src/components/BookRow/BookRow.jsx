@@ -53,7 +53,12 @@ export default function BookRow({
           {discount && (
             <>
               <p>{discount}%</p>
-              <p>{(price * ((100 - discount) / 100)).toLocaleString()}원</p>
+              <p>
+                {(
+                  Math.floor((price * ((100 - discount) / 100)) / 10) * 10
+                ).toLocaleString()}
+                원
+              </p>
             </>
           )}
         </td>

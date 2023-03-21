@@ -15,13 +15,11 @@ export function AuthProvider({ children }) {
   }, []);
 
   return (
-    <>
-      <AuthContext.Provider
-        value={{ isLoading, user, uid: user && user.uid, login, logout }}
-      >
-        {children}
-      </AuthContext.Provider>
-    </>
+    <AuthContext.Provider
+      value={{ isLoading, user, uid: user && user.uid, login, logout }}
+    >
+      {children}
+    </AuthContext.Provider>
   );
 }
 

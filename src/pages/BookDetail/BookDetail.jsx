@@ -4,6 +4,9 @@ import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { getBook } from '../../api/firebase';
 import { useAuthContext } from '../../context/AuthContext';
 import styles from './BookDetail.module.css';
+import useCart from '../../hooks/useCart';
+import Modal from '../../components/Modal/Modal';
+import CartModal from '../../components/CartModal/CartModal';
 
 export default function BookDetail() {
   const { user } = useAuthContext();
@@ -11,6 +14,11 @@ export default function BookDetail() {
   const { id } = useParams();
   const [book, setBook] = useState();
   const [wish, setWish] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const {
+    cartQuery: { data: cartItems },
+    updateCartItem,
+  } = useCart();
 
   useEffect(() => {
     if (state) {
@@ -19,6 +27,16 @@ export default function BookDetail() {
       getBook(id).then(setBook);
     }
   }, [state, id]);
+
+  const handleAddCart = () => {
+    const items = cartItems && Object.keys(cartItems);
+
+    if (items && items.includes(id)) {
+      setShowModal(true);
+    } else {
+      updateCartItem.mutate({ ...book, quantity: 1 });
+    }
+  };
   const handleWish = () => {
     setWish((prev) => !prev);
   };
@@ -59,7 +77,9 @@ export default function BookDetail() {
                 </p>
               )}
               <div className={styles.btnBox}>
-                <button className={styles.cartBtn}>장바구니</button>
+                <button onClick={handleAddCart} className={styles.cartBtn}>
+                  장바구니
+                </button>
                 <button className={styles.purchaseBtn}>바로구매</button>
                 {user && (
                   <button
@@ -80,6 +100,11 @@ export default function BookDetail() {
             </section>
           </div>
         </>
+      )}
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <CartModal onClose={() => setShowModal(false)} />
+        </Modal>
       )}
     </div>
   );

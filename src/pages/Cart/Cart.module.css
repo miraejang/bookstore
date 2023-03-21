@@ -1,0 +1,163 @@
+.cart {
+  display: flex;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.left {
+  flex: 1;
+  padding-right: 4rem;
+}
+
+.right {
+  flex-basis: 280px;
+}
+
+.cartTable {
+  flex: 1;
+  border-collapse: collapse;
+  border: 1px solid var(--light-gray);
+  text-align: center;
+}
+
+.cartTable td {
+  padding: 1rem 2rem;
+  border: 1px solid var(--light-gray);
+}
+
+/* 
+.bookBox + .bookBox {
+  border-top: 1px solid var(--light-gray);
+} */
+
+.checkbox {
+  padding: 0.5rem;
+}
+
+.checkbox input {
+  transform: scale(1.3);
+}
+
+.content {
+  display: flex;
+  align-items: center;
+}
+
+.img {
+  display: block;
+  width: 140px;
+  margin-right: 2rem;
+}
+
+.title {
+  line-height: 1.5;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #000;
+}
+
+.author {
+  margin-top: 0.3rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--gray);
+}
+
+.price {
+  margin-top: 1.2rem;
+  font-size: 1.2rem;
+  color: #000;
+}
+
+.discount {
+  font-weight: bold;
+  color: var(--yellow-green);
+  padding-right: 0.3rem;
+}
+
+.origin {
+  padding-left: 0.15em;
+  font-size: 0.8rem;
+  color: var(--gray);
+  text-decoration: line-through;
+}
+
+.quantity {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1.5em;
+  border: 1px solid var(--gray)
+}
+
+.quantity input {
+  width: 3rem;
+  padding: 0 0.3rem;
+  font-size: 1rem;
+  border: 0;
+  text-align: center;
+}
+
+.quantity button {
+  width: 2rem;
+  line-height: 2rem;
+  font-size: 1.5rem;
+}
+
+.deleteBtn {
+  width: 2rem;
+  line-height: 2rem;
+  font-size: 1.2rem;
+  background-color: var(--light-gray);
+  color: var(--dark-gray);
+}
+
+.deleteBtn:hover {
+  color: #000;
+}
+
+.priceBox {
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  padding: 1rem;
+  border: 1px solid var(--gray);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.top {
+  border-bottom: 1px solid var(--light-gray)
+}
+
+.top, .bottom {
+  padding: 1rem 0;
+}
+
+.priceBox p {
+  display: flex;
+  justify-content: space-between;
+  line-height: 2rem;
+}
+
+.totalPrice .name {
+  font-weight: bold;
+}
+
+.totalPrice .text b {
+  font-size: 1.3rem;
+}
+
+.purchaseBtn {
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--brand-color);
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.empty {
+  text-align: center;
+  font-size: 1.5rem;
+}
