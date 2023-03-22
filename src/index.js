@@ -7,19 +7,20 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Cart from './pages/Cart/Cart';
 import Main from './pages/Main/Main';
 import Mypage from './pages/Mypage/Mypage';
-import OrderList from './components/OrderList/OrderList';
-import UserInfo from './components/UserInfo/UserInfo';
 import BookDetail from './pages/BookDetail/BookDetail';
 import Admin from './pages/Admin/Admin';
 import Books from './pages/Books/Books';
 import AddBook from './components/AddBook/AddBook';
 import BooksManagement from './components/BooksManagement/BooksManagement';
 import Order from './pages/Order/Order';
+import Profile from './pages/Profile/Profile';
+import ErrorPage from './pages/ErrorPage/ErrorPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -44,16 +45,10 @@ const router = createBrowserRouter([
       {
         path: 'mypage',
         element: <Mypage />,
-        children: [
-          {
-            index: true,
-            element: <UserInfo />,
-          },
-          {
-            path: 'order-list',
-            element: <OrderList />,
-          },
-        ],
+      },
+      {
+        path: 'profile',
+        element: <Profile />,
       },
       {
         path: 'admin',
