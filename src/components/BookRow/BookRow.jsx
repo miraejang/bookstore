@@ -34,9 +34,6 @@ export default function BookRow({
     <>
       <tr className={styles.row} key={id}>
         <td>
-          <input type='checkbox' name={id} id={id} />
-        </td>
-        <td>
           <img src={img} alt={title} className={styles.img} />
         </td>
         <td>

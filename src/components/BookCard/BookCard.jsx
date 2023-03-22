@@ -50,9 +50,6 @@ export default function BookCard({ book, type = 'list', page }) {
   return (
     <>
       <li className={`${styles.bookBox} ${styles[type]}`}>
-        {listPage && (
-          <input type='checkbox' name='' id='' className={styles.checkbox} />
-        )}
         <Link to={`/books/${id}`} state={{ book }} className={styles.link}>
           <div className={styles.img}>
             <img src={img} alt={title} />
