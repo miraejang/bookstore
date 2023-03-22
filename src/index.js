@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Cart from './pages/Cart/Cart';
 import Main from './pages/Main/Main';
-import Mypage from './pages/Mypage';
+import Mypage from './pages/Mypage/Mypage';
 import OrderList from './components/OrderList/OrderList';
 import UserInfo from './components/UserInfo/UserInfo';
 import BookDetail from './pages/BookDetail/BookDetail';

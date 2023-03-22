@@ -1,0 +1,72 @@
+.mypageContent {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.orders, .myInfo {
+  flex-basis: 48%;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--medium-gray);
+}
+
+.box {
+  margin-top: 2rem;
+}
+
+/* orders */
+.count {
+  font-size: 1rem;
+  padding-left: 1rem;
+}
+
+/* myInfo */
+.myInfo .box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.edit {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.editBtn {
+  padding: 0.5rem;
+}
+
+.editBtn:focus,
+.editBtn:hover {
+  background-color: var(--light-gray);
+}
+
+.img {
+  display: flex;
+  justify-content: center;
+}
+
+.img img {
+  width: 96px;
+}
+
+.userInfoTable {
+  margin-top: 2rem;
+  display: inline-block;
+}
+
+.userInfoTable th,
+.userInfoTable td {
+  padding: 0.5rem 0.5rem;
+}
+
+.userInfoTable th {
+  word-break: keep-all;
+  padding-left: 0.5rem;
+}
+
+.userInfoTable {
+  text-align: left;
+}

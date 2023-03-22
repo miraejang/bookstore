@@ -47,15 +47,6 @@
   padding: 0 0.5rem;
   line-height: 2rem;
 }
-
-.listTable {
-  width: 100%;
-}
-
-.img {
-  width: 100px;
-}
-
 .priceBox {
   overflow: hidden;
   position: sticky;

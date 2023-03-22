@@ -1,0 +1,42 @@
+.orderDetail + .orderDetail {
+  border-top: 1px solid var(--light-gray);
+}
+
+.orderInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.row {
+  display: flex;
+  line-height: 1.5;
+}
+
+.title {
+  font-weight: bold;
+  width: 80px;
+}
+
+.displayBtn {
+  flex: 0;
+  padding: 0.5rem;
+  word-break: keep-all;
+  white-space: nowrap;
+}
+
+.displayBtn:focus,
+.displayBtn:hover {
+  background-color: var(--light-gray);
+}
+
+.details {
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border: 1px solid var(--medium-gray);
+}
+
+.listTable {
+  width: 100%;
+}

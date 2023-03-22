@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Modal from '../../components/Modal/Modal';
 import ModalContent from '../../components/ModalContent/ModalContent';
+import OrderListRow from '../../components/OrderListRow/OrderListRow';
 import { useOrders } from '../../hooks/useOrders';
 import styles from './Order.module.css';
 
@@ -79,38 +80,7 @@ export default function Order() {
                 <table className={styles.listTable}>
                   <tbody>
                     {orderList &&
-                      orderList.map((book) => {
-                        const { id, title, img, price, discount, quantity } =
-                          book;
-                        return (
-                          <tr key={id}>
-                            <td>
-                              <img
-                                src={img}
-                                alt={title}
-                                className={styles.img}
-                              />
-                            </td>
-                            <td>{title}</td>
-                            <td>{quantity || 1} 개</td>
-                            <td>
-                              <b>
-                                {!discount &&
-                                  (price * (quantity || 1)).toLocaleString()}
-                                {discount &&
-                                  (
-                                    Math.floor(
-                                      (price * ((100 - discount) / 100)) / 10
-                                    ) *
-                                    10 *
-                                    (quantity || 1)
-                                  ).toLocaleString()}
-                              </b>
-                              원
-                            </td>
-                          </tr>
-                        );
-                      })}
+                      orderList.map((book) => <OrderListRow book={book} />)}
                   </tbody>
                 </table>
               </div>

@@ -11,7 +11,7 @@ export default function Header() {
   const { isLoading, user, login, logout } = useAuthContext();
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
   const {
-    cartQuery: { isLoading: cartIsLoading, data: cartItems },
+    cartQuery: { data: cartItems },
   } = useCart();
 
   const handleAccountMenu = () => {
@@ -52,7 +52,7 @@ export default function Header() {
               >
                 <AiOutlineShoppingCart />
               </NavLink>
-              {!cartIsLoading && (
+              {cartItems && (
                 <div className={styles.cartCount}>
                   {Object.keys(cartItems).length}
                 </div>
@@ -68,8 +68,10 @@ export default function Header() {
               </NavLink>
             </li>
             {!user && (
-              <li>
-                <button onClick={login}>로그인</button>
+              <li className={styles.login}>
+                <button onClick={login} className={styles.link}>
+                  로그인
+                </button>
               </li>
             )}
             {user && (
@@ -86,7 +88,10 @@ export default function Header() {
                       {user.displayName}
                     </li>
                     <li className={styles.mypage}>
-                      <Link to='mypage'>
+                      <Link
+                        to='mypage'
+                        onClick={() => setAccountMenuOpen(false)}
+                      >
                         <FiUser className={styles.icon} />
                         마이페이지
                       </Link>
