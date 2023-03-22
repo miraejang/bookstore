@@ -23,13 +23,20 @@ export default function Profile() {
         displayName: user.displayName || '',
         email: user.email || '',
         phoneNumber: user.phoneNumber || '',
-        address: '',
+        address: user.address || '',
       });
     }
     if (userProfile) {
       setProfile(userProfile);
     }
-  }, [userProfile]);
+  }, [
+    userProfile,
+    user.photoURL,
+    user.displayName,
+    user.email,
+    user.phoneNumber,
+    user.address,
+  ]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

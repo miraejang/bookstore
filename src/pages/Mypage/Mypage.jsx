@@ -24,13 +24,20 @@ export default function Mypage() {
         displayName: user.displayName || '',
         email: user.email || '',
         phoneNumber: user.phoneNumber || '',
-        address: '',
+        address: user.address || '',
       });
     }
     if (userProfile) {
       setProfile(userProfile);
     }
-  }, [userProfile]);
+  }, [
+    userProfile,
+    user.photoURL,
+    user.displayName,
+    user.email,
+    user.phoneNumber,
+    user.address,
+  ]);
 
   const handleProfile = () => {
     naivgate('/profile');
