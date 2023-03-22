@@ -142,14 +142,26 @@
   font-size: 1.3rem;
 }
 
-.purchaseBtn {
-  width: 100%;
+.btnBox {
   margin-top: 2rem;
-  padding: 1rem;
+}
+
+.btn {
+  width: 100%;
+  padding: 0.8rem 1rem;
   border-radius: 0.5rem;
   background-color: var(--brand-color);
   font-size: 1.1rem;
   color: #fff;
+}
+
+.btn + .btn {
+  margin-top: 0.5rem;
+}
+
+.btn:focus,
+.btn:hover {
+  background-color: var(--brand-hover-color);
 }
 
 .empty {

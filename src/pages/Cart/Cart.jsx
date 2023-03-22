@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BiTrash } from 'react-icons/bi';
+import { useNavigate } from 'react-router-dom';
 import useCart from '../../hooks/useCart';
 import styles from './Cart.module.css';
+import Modal from '../../components/Modal/Modal';
+import ModalContent from '../../components/ModalContent/ModalContent';
 
 const FREE_SHIPPING = 30000;
 const SHIPPING = 2500;
@@ -13,6 +16,9 @@ export default function Cart() {
     updateCartItem,
     removeCartItem,
   } = useCart();
+  const [checkedState, setCheckedState] = useState();
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
   const totalPrice =
     cartItems &&
     Object.values(cartItems) //
@@ -27,6 +33,14 @@ export default function Cart() {
       }, 0);
   const shippingPrice =
     totalPrice && totalPrice >= FREE_SHIPPING ? 0 : SHIPPING;
+
+  useEffect(() => {
+    const obj = {};
+    if (cartItems) {
+      Object.keys(cartItems).map((key) => (obj[key] = false));
+    }
+    setCheckedState(obj);
+  }, [cartItems]);
 
   const handleQuantity = (e, book) => {
     const quantity = e.target.value;
@@ -46,6 +60,25 @@ export default function Cart() {
   };
   const handleDelete = (id) => {
     removeCartItem.mutate(id);
+  };
+  const handleSelected = () => {
+    const checked = Object.keys(checkedState).filter(
+      (key) => checkedState[key] === true
+    );
+    const list = [];
+    checked.map((id) => list.push(cartItems[id]));
+    if (list.length > 0) {
+      navigate('/order', { state: { list } });
+    } else {
+      setShowModal(true);
+    }
+  };
+  const handleAll = () => {
+    navigate('/order', { state: { list: Object.values(cartItems) } });
+  };
+  const handleChange = (e) => {
+    const { name, checked } = e.target;
+    setCheckedState((prev) => ({ ...prev, [name]: checked }));
   };
 
   return (
@@ -74,7 +107,15 @@ export default function Cart() {
                   return (
                     <tr className={styles.row} key={id}>
                       <td className={styles.checkbox}>
-                        <input type='checkbox' name='' id='' />
+                        {checkedState && (
+                          <input
+                            onChange={handleChange}
+                            type='checkbox'
+                            name={id}
+                            id={id}
+                            checked={checkedState[id]}
+                          />
+                        )}
                       </td>
                       <td>
                         <Link to={`/books/${id}`} state={{ book }}>
@@ -175,11 +216,27 @@ export default function Cart() {
                     원
                   </span>
                 </p>
-                <button className={styles.purchaseBtn}>주문하기</button>
+                <div className={styles.btnBox}>
+                  <button onClick={handleSelected} className={styles.btn}>
+                    선택 주문하기
+                  </button>
+                  <button onClick={handleAll} className={styles.btn}>
+                    전체 주문하기
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </>
+      )}
+
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <ModalContent
+            onClose={() => setShowModal(false)}
+            message='선택한 상품이 없습니다.'
+          />
+        </Modal>
       )}
     </div>
   );

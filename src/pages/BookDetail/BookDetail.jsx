@@ -85,7 +85,7 @@ export default function BookDetail() {
                 </button>
                 <Link
                   to='/order'
-                  state={{ book }}
+                  state={{ list: [book] }}
                   className={`${styles.btn} ${styles.purchaseBtn}`}
                 >
                   바로구매

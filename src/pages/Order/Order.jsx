@@ -33,7 +33,7 @@ export default function Order() {
 
   useEffect(() => {
     if (state) {
-      setOrderList([state.book]);
+      setOrderList(state.list);
     }
     if (state === null) {
       navigate('/');
@@ -80,7 +80,9 @@ export default function Order() {
                 <table className={styles.listTable}>
                   <tbody>
                     {orderList &&
-                      orderList.map((book) => <OrderListRow book={book} />)}
+                      orderList.map((book) => (
+                        <OrderListRow book={book} key={book.key} />
+                      ))}
                   </tbody>
                 </table>
               </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import useCart from '../../hooks/useCart';
 import styles from './BookCard.module.css';
@@ -21,6 +21,7 @@ export default function BookCard({ book, type = 'list', page }) {
   const [listPage, setlistPage] = useState(false);
   const [wish, setWish] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
   const {
     cartQuery: { data: cartItems },
     updateCartItem,
@@ -41,6 +42,9 @@ export default function BookCard({ book, type = 'list', page }) {
   };
   const handleWish = () => {
     setWish((prev) => !prev);
+  };
+  const handleOrder = () => {
+    navigate('/order', { state: { list: [book] } });
   };
 
   return (
@@ -102,7 +106,9 @@ export default function BookCard({ book, type = 'list', page }) {
             <button onClick={handleAddCart} className={styles.cartBtn}>
               장바구니
             </button>
-            <button className={styles.purchaseBtn}>바로구매</button>
+            <button onClick={handleOrder} className={styles.purchaseBtn}>
+              바로구매
+            </button>
           </div>
         )}
       </li>
