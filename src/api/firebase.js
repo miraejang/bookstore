@@ -141,3 +141,19 @@ export async function getOrders(uid) {
     })
     .catch(console.error);
 }
+
+export async function getProfile(uid) {
+  return get(ref(database, `users/${uid}/profile`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return snapshot.val();
+      } else {
+        return null;
+      }
+    })
+    .catch(console.error);
+}
+
+export async function updateProfile(uid, profile) {
+  set(ref(database, `users/${uid}/profile`), profile);
+}

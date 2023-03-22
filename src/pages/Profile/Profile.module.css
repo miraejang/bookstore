@@ -1,0 +1,53 @@
+.profile {
+  max-width: 50rem;
+  margin: 0 auto;
+  padding: 4rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--medium-gray);
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form {
+  margin-top: 2rem;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.form > div {
+  display: flex;
+  padding: 1rem 0;
+}
+
+.label {
+  flex-basis: 100px;
+  font-weight: bold;
+}
+
+.input {
+  flex: 1;
+  line-height: 2;
+  padding: 0.3rem 0.5rem;
+}
+
+.editBtn {
+  margin-top: 2rem;
+  padding: 0.5rem 3rem;
+  border-radius: 0.5rem;
+  background-color: var(--brand-color);
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.editBtn:hover {
+  background-color: var(--brand-hover-color);
+}
