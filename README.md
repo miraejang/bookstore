@@ -1,3 +1,4 @@
 # Bookstore
 
-서점을 만들어 본 사이트 입니다.
+온라인 서점 앱입니다.
+https://storied-taffy-1caa0c.netlify.app/
